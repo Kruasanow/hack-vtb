@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_API_KEY&lang=ru_RU" type="text/javascript"></script>
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Логотип">
+    </header>
+
+    <main>
+        <div class="input-fields">
+            <form method="POST">
+                <label for="user_type">Тип клиента:</label>
+                <select id="user_type" name="user_type">
+                    <option value="individual">Физическое лицо</option>
+                    <option value="business">Юридическое лицо</option>
+                </select>
+                <label for="service">Выбор услуги:</label>
+                <input type="text" id="service" name="service" placeholder="Выберите услугу">
+                <label for="transport">Транспорт:</label>
+                <input type="text" id="transport" name="transport" placeholder="Укажите транспорт">
+                <input type="submit" value="Рассчитать">
+            </form>
+        </div>
+
+        {% if user_data %}
+        <div class="result">
+            <p>Тип клиента: {{ user_data.user_type }}</p>
+            <p>Выбранная услуга: {{ user_data.service }}</p>
+            <p>Транспорт: {{ user_data.transport }}</p>
+            <p>Лучшие банки:</p>
+            <ul>
+                {% for bank in best_banks %}
+                <li>{{ bank['name'] }} (Ставка: {{ bank['rate'] * 100 }}%)</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <div id="map" class="map"></div>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
