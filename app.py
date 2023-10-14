@@ -35,6 +35,7 @@ def get_data():
     routeType = request.args.get('routeType')
     cordX = request.args.get('cordX')
     cordY = request.args.get('cordY')
+    time = request.args.get('time')
     data = banks[100:103]
     data.append(buttons_html)
     print(data)

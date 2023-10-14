@@ -50,6 +50,7 @@ function init() {
             var routeType = document.getElementById('route-type').value;
             var user_type = document.getElementById('user_type').value;
             var service = document.getElementById('service').value;
+            var time = document.getElementById('visit-time').value;
             var cordX = userCoordinates[0]
             var cordY = userCoordinates[1]
             console.log(cordX);
@@ -61,6 +62,7 @@ function init() {
                     routeType: routeType,
                     cordX: cordX,
                     cordY: cordY,
+                    time: time,
                  };
                 $.ajax({
                     type: 'GET',
