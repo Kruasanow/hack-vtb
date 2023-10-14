@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, jsonify
+import json
 
 app = Flask(__name__)
 
-banks = [
-    # Данные о банках из JSON файла
-]
+with open('static/resources/offices.json', 'r', encoding='utf-8') as json_file:
+    banks = json.load(json_file)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -19,15 +19,16 @@ def index():
             'transport': transport,
         }
 
-        # Выбор лучших банков - ваши критерии выбора здесь
-        # Например, сортировка банков по расстоянию и выбор топ-3
-
-        best_banks = sorted(banks, key=lambda bank: bank['distance'])
-        best_banks = best_banks[:3]
-
-        return render_template('index.html', user_data=user_data, best_banks=best_banks)
+        return render_template('index.html', user_data=user_data)
 
     return render_template('index.html', best_banks=None)
 
+@app.route('/get_data', methods=['GET', 'POST'])
+def get_data():
+    # Выбор лучшего банка
+    data = banks[100]
+    print(data)
+    return jsonify(data=data)
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", debug=True)

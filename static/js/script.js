@@ -8,6 +8,7 @@ function init() {
 
     var placemarks = new ymaps.GeoObjectCollection();
     var selectedBanks = []; // Список всех банков из JSON
+    var userCoordinates = null; // Координаты пользователя
 
     // Загрузка и обработка JSON файла с данными о банках
     fetch('/static/resources/offices.json') // Укажите правильный путь к вашему JSON файлу
@@ -32,34 +33,75 @@ function init() {
 
     myMap.geoObjects.add(placemarks);
 
+    // Определение местоположения пользователя
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            userCoordinates = [position.coords.latitude, position.coords.longitude];
+            // userCoordinates = [55.656329, 37.526832];
+        });
+    } else {
+        alert('Ваш браузер не поддерживает геолокацию.');
+    }
+
     document.getElementById('calculate-route').addEventListener('click', function () {
-        // Очистка маршрута на карте (если он уже был построен)
-        myMap.geoObjects.remove(myMap.geoObjects.get(0));
+        if (userCoordinates) {
+            // Очистка маршрута на карте (если он уже был построен)
+            myMap.geoObjects.remove(myMap.geoObjects.get(0));
 
-        // Здесь можно добавить логику выбора лучших банков
-        // Например, сортировка банков по какому-то критерию и выбор топ-3
-        selectedBanks.sort((a, b) => {
-            // Например, сортировка по расстоянию
-            return a.distance - b.distance;
-        });
+            // Получение выбранного типа маршрута
+            var routeType = document.getElementById('route-type').value;
 
-        var topBanks = selectedBanks.slice(0, 3); // Выбираем топ-3 банка
+            $(document).ready(function() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/get_data',
+                    success: function(response) {
+                        // Получите значение из ответа
+                        var best_banks = response.data;
+                        var multiRoute = new ymaps.multiRouter.MultiRoute({
+                            referencePoints: [userCoordinates, [best_banks.latitude, best_banks.longitude]],
+                        params: {
+                                routingMode: routeType, // Устанавливаем выбранный тип маршрута
+                                avoidTrafficJams: true
+                            }
+                        });
 
-        // Построение маршрута к выбранным банкам
-        var multiRoute = new ymaps.multiRouter.MultiRoute({
-            referencePoints: topBanks.map(function (bank) {
-                return [bank.latitude, bank.longitude];
-            }),
-            params: {
-                routingMode: 'auto',
-                avoidTrafficJams: true
-            }
-        });
+                        multiRoute.model.setReferencePoints([userCoordinates, [best_banks.latitude, best_banks.longitude]]);
 
-        multiRoute.model.setReferencePoints(topBanks.map(function (bank) {
-            return [bank.latitude, bank.longitude];
-        }));
+                        myMap.geoObjects.add(multiRoute);
+                    },
+                    error: function(error) {
+                        console.log('Произошла ошибка:', error);
+                    }
+                });
+            });
 
-        myMap.geoObjects.add(multiRoute);
+
+            // Здесь можно добавить логику выбора лучшего банка
+            // Например, сортировка банков по какому-то критерию и выбор самого лучшего
+            // selectedBanks.sort((a, b) => {
+            //     // Например, сортировка по расстоянию от пользователя
+            //     var distanceA = ymaps.coordSystem.geo.getDistance(userCoordinates, [a.latitude, a.longitude]);
+            //     var distanceB = ymaps.coordSystem.geo.getDistance(userCoordinates, [b.latitude, b.longitude]);
+            //     return distanceA - distanceB;
+            // });
+            //
+            // var bestBank = selectedBanks[0]; // Выбираем самый лучший банк
+            // console.log(bestBank);
+            // Построение маршрута к выбранному банку с учетом типа маршрута
+            // var multiRoute = new ymaps.multiRouter.MultiRoute({
+            //     referencePoints: [userCoordinates, [bestBank.latitude, bestBank.longitude]],
+            //     params: {
+            //         routingMode: routeType, // Устанавливаем выбранный тип маршрута
+            //         avoidTrafficJams: true
+            //     }
+            // });
+            //
+            // multiRoute.model.setReferencePoints([userCoordinates, [bestBank.latitude, bestBank.longitude]]);
+            //
+            // myMap.geoObjects.add(multiRoute);
+        } else {
+            alert('Не удалось получить координаты пользователя.');
+        }
     });
 }

@@ -1,27 +1,67 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="https://api-maps.yandex.ru/2.1/?apikey=e3d4b36e-4a55-4e7f-89b3-47d2237ff587&lang=ru_RU" type="text/javascript"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
 </head>
 <body>
-    <header>
+
+<!-- Хедер -->
+<header>
+    <title>Главная страница</title>
+    <div class="container">
         <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Логотип">
-    </header>
+        <!-- Здесь вы можете добавить навигационное меню или другую информацию -->
+        <nav>
+            <ul>
+                <li><a href="https://www.vtb.ru/">Официальный сайт</a></li>
+                <li><a href="#">Услуги</a></li>
+                <li><a href="https://www.vtb.ru/about/contacts/">Контакты</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
     <main>
         <div class="input-fields">
-            <form method="POST" id="user-form">
-                <label for="user_type">Тип клиента:</label>
-                <select id="user_type" name="user_type">
-                    <option value="individual">Физическое лицо</option>
-                    <option value="business">Юридическое лицо</option>
-                </select>
-                <label for="service">Выбор услуги:</label>
-                <input type="text" id="service" name="service" placeholder="Выберите услугу">
-                <label for="transport">Транспорт:</label>
-                <input type="text" id="transport" name="transport" placeholder="Укажите транспорт">
-                <input type="button" value="Определить подходящий банк" id="calculate-route">
+            <form method="POST" class="user-form">
+                
+                <!-- Тип клиента -->
+                <div class="form-group">
+                    <label for="user_type">Тип клиента:</label>
+                    <select id="user_type" name="user_type">
+                        <option value="individual">Физическое лицо</option>
+                        <option value="business">Юридическое лицо</option>
+                    </select>
+                </div>
+        
+                <!-- Выбор услуги -->
+                <div class="form-group">
+                    <label for="service">Выбор услуги:</label>
+                    <select id="service_var" name="service">
+                        <option value="valuta">Обмен валюты</option>
+                        <option value="vupiska">Получение выписки</option>
+                        <option value="kredit">Оформление кредита</option>
+                    </select>
+                </div>
+        
+                <!-- Транспорт -->
+                <div class="form-group">
+                    <label for="transport">Транспорт:</label>
+                    <select id="route-type" name="transport">
+                        <option value="pedestrian">Пешком</option>
+                        <option value="auto">Личный транспорт</option>
+                        <option value="masstransit">Общественный транспорт</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <input type="button" value="Определить подходящий банк" id="calculate-route">
+                </div>
+                
             </form>
         </div>
 
@@ -41,6 +81,14 @@
 
     </main>
 
+    <footer>
+        <div class="container">
+            <p>&copy; ВТБ Банк, 2023. Все права защищены.</p>
+            <!-- Здесь вы можете добавить ссылки на соц. сети, контактную информацию и т.д. -->
+        </div>
+    </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-</body>
-</html>
+    </body>
+    </html>

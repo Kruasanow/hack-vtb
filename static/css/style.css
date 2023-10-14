@@ -1,4 +1,4 @@
-body {
+/* body {
     font-family: Arial, sans-serif;
 }
 
@@ -31,4 +31,186 @@ main {
 .map {
     width: 100%;
     height: 400px;
+} */
+
+@font-face {
+    font-family: 'VTBGroupUI-Bold';
+    src: url('../fonts/VTBGroupUI-Bold/VTBGroupUI-Bold.eot');
+    src: url('../fonts/VTBGroupUI-Bold/VTBGroupUI-Bold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/VTBGroupUI-Bold/VTBGroupUI-Bold.woff2') format('woff2'),
+         url('../fonts/VTBGroupUI-Bold/VTBGroupUI-Bold.woff') format('woff'),
+         url('../fonts/VTBGroupUI-Bold/VTBGroupUI-Bold.ttf') format('truetype'),
+         url('../fonts/VTBGroupUI-Bold/VTBGroupUI-Bold.svg#VTBGroupUIWeb-Bold') format('svg');
+}
+
+/* VTBGroupUI-DemiBold */
+@font-face {
+    font-family: 'VTBGroupUI-DemiBold';
+    src: url('../fonts/VTBGroupUI-DemiBold/VTBGroupUI-DemiBold.eot');
+    src: url('../fonts/VTBGroupUI-DemiBold/VTBGroupUI-DemiBold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/VTBGroupUI-DemiBold/VTBGroupUI-DemiBold.woff2') format('woff2'),
+         url('../fonts/VTBGroupUI-DemiBold/VTBGroupUI-DemiBold.woff') format('woff'),
+         url('../fonts/VTBGroupUI-DemiBold/VTBGroupUI-DemiBold.ttf') format('truetype'),
+         url('../fonts/VTBGroupUI-DemiBold/VTBGroupUI-DemiBold.svg#VTBGroupUIWeb-DemiBold') format('svg');
+}
+
+/* VTBGroupUI-Light */
+@font-face {
+    font-family: 'VTBGroupUI-Light';
+    src: url('../fonts/VTBGroupUI-Light/VTBGroupUI-Light.eot');
+    src: url('../fonts/VTBGroupUI-Light/VTBGroupUI-Light.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/VTBGroupUI-Light/VTBGroupUI-Light.woff2') format('woff2'),
+         url('../fonts/VTBGroupUI-Light/VTBGroupUI-Light.woff') format('woff'),
+         url('../fonts/VTBGroupUI-Light/VTBGroupUI-Light.ttf') format('truetype'),
+         url('../fonts/VTBGroupUI-Light/VTBGroupUI-Light.svg#VTBGroupUIWeb-Light') format('svg');
+}
+
+/* VTBGroupUI-Medium */
+@font-face {
+    font-family: 'VTBGroupUI-Medium';
+    src: url('../fonts/VTBGroupUI-Medium/VTBGroupUI-Medium.eot');
+    src: url('../fonts/VTBGroupUI-Medium/VTBGroupUI-Medium.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/VTBGroupUI-Medium/VTBGroupUI-Medium.woff2') format('woff2'),
+         url('../fonts/VTBGroupUI-Medium/VTBGroupUI-Medium.woff') format('woff'),
+         url('../fonts/VTBGroupUI-Medium/VTBGroupUI-Medium.ttf') format('truetype'),
+         url('../fonts/VTBGroupUI-Medium/VTBGroupUI-Medium.svg#VTBGroupUIWeb-Medium') format('svg');
+}
+
+/* VTBGroupUI-Regular */
+@font-face {
+    font-family: 'VTBGroupUI-Regular';
+    src: url('../fonts/VTBGroupUI-Regular/VTBGroupUI-Regular.eot');
+    src: url('../fonts/VTBGroupUI-Regular/VTBGroupUI-Regular.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/VTBGroupUI-Regular/VTBGroupUI-Regular.woff2') format('woff2'),
+         url('../fonts/VTBGroupUI-Regular/VTBGroupUI-Regular.woff') format('woff'),
+         url('../fonts/VTBGroupUI-Regular/VTBGroupUI-Regular.ttf') format('truetype'),
+         url('../fonts/VTBGroupUI-Regular/VTBGroupUI-Regular.svg#VTBGroupUIWeb-Regular') format('svg');
+}
+
+body {
+    font-family: 'VTBGroupUI-Regular', Arial, sans-serif; /* по умолчанию используется VTBGroupUI-Regular */
+    background-color: #fff;
+    color: #002882;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3 {
+    font-family: 'VTBGroupUI-Bold', Arial, sans-serif; /* для заголовков используется VTBGroupUI-Bold */
+}
+
+.user-form {
+    font-family: 'VTBGroupUI-Regular', Arial, sans-serif;
+}
+
+.user-form label, 
+.user-form select, 
+.user-form input {
+    font-family: 'VTBGroupUI-Regular', Arial, sans-serif;
+}
+
+header {
+    background-color: #002882;  /* Темно-синий цвет ВТБ */
+    padding: 10px 0;
+    text-align: center;
+}
+
+header img {
+    width: 150px;  /* Подгоните размер логотипа под ваше изображение */
+}
+
+.input-fields, .result {
+    padding: 20px;
+    max-width: 100%;
+    margin: 20px auto;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #002882;  /* Темно-синий цвет текста для подписей */
+}
+
+select, input[type="button"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #e0e0e0;
+}
+
+input[type="button"] {
+    background-color: #002882; /* Темно-синий фон для кнопки */
+    color: #fff;
+    cursor: pointer;
+    border: none;
+}
+
+input[type="button"]:hover {
+    background-color: #002882; /* Немного темнее для hover эффекта */
+}
+
+.map {
+    width: 100%;
+    height: 600px; /* или любая другая высота, которую вы предпочитаете */
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #aaa;
+}
+
+footer {
+    background-color: #002882;  /* Темно-синий цвет ВТБ */
+    color: white;
+    padding: 20px 0;
+}
+
+footer p {
+    text-align: center;
+    margin: 0;
+    font-size: 14px;
+}
+.form-group {
+    flex: 1;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.user-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input[type="button"] {
+    width: auto;  /* изменение для кнопки, чтобы она не растягивалась на всю ширину */
+    margin-top: 20px;  /* небольшой отступ сверху для кнопки */
 }
