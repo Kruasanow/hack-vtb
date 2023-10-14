@@ -25,9 +25,15 @@ def index():
 
 @app.route('/get_data', methods=['GET', 'POST'])
 def get_data():
+    user_type = request.args.get('user_type')
+    service = request.args.get('service')
+    routeType = request.args.get('routeType')
+    cordX = request.args.get('cordX')
+    cordY = request.args.get('cordY')
     # Выбор лучшего банка
     data = banks[100]
     print(data)
+    print(user_type, service, routeType, cordX, cordY)
     return jsonify(data=data)
 
 if __name__ == '__main__':

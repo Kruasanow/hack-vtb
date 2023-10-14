@@ -160,7 +160,8 @@ input[type="button"]:hover {
 
 .map {
     width: 100%;
-    height: 600px; /* или любая другая высота, которую вы предпочитаете */
+    flex: 1;
+    min-height: 600px; /* или любая другая высота, которую вы предпочитаете */
 }
 .container {
     max-width: 1200px;

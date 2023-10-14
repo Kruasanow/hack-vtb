@@ -50,11 +50,24 @@ function init() {
 
             // Получение выбранного типа маршрута
             var routeType = document.getElementById('route-type').value;
-
+            var user_type = document.getElementById('user_type').value;
+            var service = document.getElementById('service').value;
+            var cordX = userCoordinates[0]
+            var cordY = userCoordinates[1]
+            console.log(cordX);
+            console.log(cordY);
             $(document).ready(function() {
+                var requestData = {
+                    user_type: user_type,
+                    service: service,
+                    routeType: routeType,
+                    cordX: cordX,
+                    cordY: cordY,
+                 };
                 $.ajax({
                     type: 'GET',
                     url: '/get_data',
+                    data: requestData,
                     success: function(response) {
                         // Получите значение из ответа
                         var best_banks = response.data;
