@@ -9,12 +9,10 @@
 </head>
 <body>
 
-<!-- Хедер -->
 <header>
-    <title>Главная страница</title>
+    <title>Помощник ВТБ</title>
     <div class="container">
-        <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Логотип">
-        <!-- Здесь вы можете добавить навигационное меню или другую информацию -->
+        <img src="{{ url_for('static', filename='image/VTB_logo-white_ru_cmyk.svg') }}" alt="Логотип">
         <nav>
             <ul>
                 <li><a href="https://www.vtb.ru/">Официальный сайт</a></li>
@@ -28,8 +26,7 @@
     <main class="main-content">
         <div class="input-fields">
             <form method="POST" class="user-form">
-                
-                <!-- Тип клиента -->
+
                 <div class="form-group">
                     <label for="user_type">Тип клиента:</label>
                     <select id="user_type" name="user_type">
@@ -37,8 +34,7 @@
                         <option value="business">Юридическое лицо</option>
                     </select>
                 </div>
-        
-                <!-- Выбор услуги -->
+
                 <div class="form-group">
                     <label for="service">Выбор услуги:</label>
                     <select id="service" name="service">
@@ -47,8 +43,7 @@
                         <option value="kredit">Оформление кредита</option>
                     </select>
                 </div>
-        
-                <!-- Транспорт -->
+
                 <div class="form-group">
                     <label for="transport">Транспорт:</label>
                     <select id="route-type" name="transport">
@@ -63,6 +58,10 @@
                 </div>
                 
             </form>
+        </div>
+
+        <div id="partial-data-container">
+
         </div>
 
         {% if user_data %}
@@ -84,7 +83,6 @@
     <footer>
         <div class="container">
             <p>&copy; ВТБ Банк, 2023. Все права защищены.</p>
-            <!-- Здесь вы можете добавить ссылки на соц. сети, контактную информацию и т.д. -->
         </div>
     </footer>
     
