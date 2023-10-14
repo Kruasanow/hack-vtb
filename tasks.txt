@@ -1,0 +1,9 @@
+db: flask_db:
+
+    user
+    
+    office
+
+    zayavka
+
+    marks
