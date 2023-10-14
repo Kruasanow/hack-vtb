@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_API_KEY&lang=ru_RU" type="text/javascript"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=e3d4b36e-4a55-4e7f-89b3-47d2237ff587&lang=ru_RU" type="text/javascript"></script>
 </head>
 <body>
     <header>
@@ -11,7 +11,7 @@
 
     <main>
         <div class="input-fields">
-            <form method="POST">
+            <form method="POST" id="user-form">
                 <label for="user_type">Тип клиента:</label>
                 <select id="user_type" name="user_type">
                     <option value="individual">Физическое лицо</option>
@@ -21,19 +21,17 @@
                 <input type="text" id="service" name="service" placeholder="Выберите услугу">
                 <label for="transport">Транспорт:</label>
                 <input type="text" id="transport" name="transport" placeholder="Укажите транспорт">
-                <input type="submit" value="Рассчитать">
+                <input type="button" value="Определить подходящий банк" id="calculate-route">
             </form>
         </div>
 
         {% if user_data %}
         <div class="result">
-            <p>Тип клиента: {{ user_data.user_type }}</p>
-            <p>Выбранная услуга: {{ user_data.service }}</p>
-            <p>Транспорт: {{ user_data.transport }}</p>
             <p>Лучшие банки:</p>
             <ul>
                 {% for bank in best_banks %}
                 <li>{{ bank['name'] }} (Ставка: {{ bank['rate'] * 100 }}%)</li>
+                <p>Описание: {{ bank['description'] }}</p>
                 {% endfor %}
             </ul>
         </div>
