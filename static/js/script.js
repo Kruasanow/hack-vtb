@@ -10,7 +10,7 @@ function init() {
     var selectedBanks = []; // Список всех банков из JSON
 
     // Загрузка и обработка JSON файла с данными о банках
-    fetch('/static/banks.json') // Укажите правильный путь к вашему JSON файлу
+    fetch('/static/resources/offices.json') // Укажите правильный путь к вашему JSON файлу
         .then(response => response.json())
         .then(data => {
             selectedBanks = data; // Сохраняем все банки из JSON
