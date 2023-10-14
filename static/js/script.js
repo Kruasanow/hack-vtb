@@ -17,11 +17,12 @@ function init() {
             selectedBanks = data; // Сохраняем все банки из JSON
 
             data.forEach(bankData => {
+                var openHoursFormatted = bankData.openHoursIndividual.map(day => day.days + ': ' + day.hours).join('<br>');
                 var placemark = new ymaps.Placemark([bankData.latitude, bankData.longitude], {
                     hintContent: bankData.salePointName,
                     balloonContentHeader: bankData.salePointName,
                     balloonContentBody: 'Адрес: ' + bankData.address,
-                    balloonContentFooter: 'Статус: ' + bankData.status
+                    balloonContentFooter: 'Время работы: <br>' + openHoursFormatted
                 });
 
                 placemarks.add(placemark);
