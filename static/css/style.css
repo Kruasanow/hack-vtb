@@ -184,7 +184,30 @@ footer p {
     margin-left: 10px;
     margin-right: 10px;
 }
-
+#route-type {
+    border: 2px solid #002882; /* меняем рамку */
+    border-radius: 5px; /* скругляем углы */
+    padding: 5px 10px; /* добавляем внутренние отступы */
+    background-color: #e6f2ff; /* меняем фон */
+    color: #002882; /* меняем цвет текста */
+    outline: none; /* убираем выделение при фокусе */
+}
+#service {
+    border: 2px solid #002882; /* меняем рамку */
+    border-radius: 5px; /* скругляем углы */
+    padding: 5px 10px; /* добавляем внутренние отступы */
+    background-color: #e6f2ff; /* меняем фон */
+    color: #002882; /* меняем цвет текста */
+    outline: none; /* убираем выделение при фокусе */
+}
+#user_type {
+    border: 2px solid #002882; /* меняем рамку */
+    border-radius: 5px; /* скругляем углы */
+    padding: 5px 10px; /* добавляем внутренние отступы */
+    background-color: #e6f2ff; /* меняем фон */
+    color: #002882; /* меняем цвет текста */
+    outline: none; /* убираем выделение при фокусе */
+}
 .form-group1 {
     flex: 1;
     margin: 10px; 
@@ -194,6 +217,19 @@ footer p {
     padding: 0; 
     
 }
+
+.form-group2 {
+    flex: 1;
+    margin-left: 10px;
+    margin-right: 10px; 
+
+    margin: 10px; 
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    padding: 0; 
+}
+
 .form-group1 input[type="button"] {
     transform: scale(1.05);
     width: 100%; 

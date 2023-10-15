@@ -23,6 +23,13 @@ function init() {
                     balloonContentHeader: bankData.salePointName,
                     balloonContentBody: 'Адрес: ' + bankData.address,
                     balloonContentFooter: 'Время работы: <br>' + openHoursFormatted
+                    
+                },
+                {
+                    iconLayout: 'default#image',
+                    iconImageHref: '/static/image/mark.png',
+                    icon_imagesize: [30, 42],
+                    iconImageOffset: [-3, -42]
                 });
 
                 placemarks.add(placemark);
@@ -75,6 +82,7 @@ function init() {
                         console.log(best_banks[3])
                         buildRouteToBank(best_banks[0]);
                         console.log(best_banks[3])
+                        // console.log('IIIIIIII')
                         $('#partial-data-container').html(best_banks[3]);
                         document.getElementById('bank-1').addEventListener('click', function() {
                             if (userCoordinates && best_banks.length >= 1) {
@@ -109,6 +117,44 @@ function init() {
                                     routingMode: routeType, // Устанавливаем выбранный тип маршрута
                                     avoidTrafficJams: true
                                 }
+                            }, {
+                                // Внешний вид путевых точек.
+                                wayPointStartIconColor: "#333",
+                                wayPointStartIconFillColor: "#B3B3B3",
+                                // Задаем собственную картинку для последней путевой точки.
+                                // wayPointFinishIconLayout: "default#image",
+                                wayPointFinishIconImageHref: "/static/image/mark.png",
+                                wayPointFinishIconImageSize: [30, 42],
+                                wayPointFinishIconImageOffset: [-3, -42],
+
+                                // Внешний вид транзитных точек.
+                                viaPointIconRadius: 7,
+                                viaPointIconFillColor: "#000088",
+                                viaPointActiveIconFillColor: "#E63E92",
+                                // Транзитные точки можно перетаскивать, при этом
+                                // маршрут будет перестраиваться.
+                                viaPointDraggable: true,
+                                // Позволяет скрыть иконки транзитных точек маршрута.
+                                // viaPointVisible:false,
+
+                                // Внешний вид точечных маркеров под путевыми точками.
+                                pinIconFillColor: "#000088",
+                                pinActiveIconFillColor: "#B3B3B3",
+                                // Позволяет скрыть точечные маркеры путевых точек.
+                                // pinVisible:false,
+
+                                // Внешний вид линии маршрута.
+                                routeStrokeWidth: 2,
+                                routeStrokeColor: "#000088",
+                                routeActiveStrokeWidth: 6,
+                                routeActiveStrokeColor: "#1E4BD2",
+
+                                // Внешний вид линии пешеходного маршрута.
+                                routeActivePedestrianSegmentStrokeStyle: "solid",
+                                routeActivePedestrianSegmentStrokeColor: "#1E4BD2",
+
+                                // Автоматически устанавливать границы карты так, чтобы маршрут был виден целиком.
+                                boundsAutoApply: true
                             });
 
                             multiRoute.model.setReferencePoints([userCoordinates, [bankToRoute.latitude, bankToRoute.longitude]]);

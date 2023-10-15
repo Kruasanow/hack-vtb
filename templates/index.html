@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="https://api-maps.yandex.ru/2.1/?apikey=e3d4b36e-4a55-4e7f-89b3-47d2237ff587&lang=ru_RU" type="text/javascript"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='/image/favicon.ico') }}">
 
 </head>
 <body>
@@ -16,7 +17,7 @@
         <nav>
             <ul>
                 <li><a href="https://www.vtb.ru/">Официальный сайт</a></li>
-                <li><a href="#">Услуги</a></li>
+                <!-- <li><a href="#">Услуги</a></li> -->
                 <li><a href="https://www.vtb.ru/about/contacts/">Контакты</a></li>
             </ul>
         </nav>
@@ -44,7 +45,7 @@
                     </select>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" style="">
                     <label for="transport">Транспорт:</label>
                     <select id="route-type" name="transport">
                         <option value="pedestrian">Пешком</option>
@@ -52,9 +53,28 @@
                         <option value="masstransit">Общественный транспорт</option>
                     </select>
                 </div>
-
+                <style>
+                    #visit-time {
+                        font-family: 'VTBGroupUI-Regular', Arial, sans-serif;
+                        width: 90%; /* измените ширину по желанию */
+                        height: 20px; /* измените высоту по желанию */
+                        font-size: 14px; /* увеличиваем размер шрифта */
+                        border: 2px solid #002882; /* меняем рамку */
+                        border-radius: 5px; /* скругляем углы */
+                        padding: 5px 10px; /* добавляем внутренние отступы */
+                        background-color: #e6f2ff; /* меняем фон */
+                        color: #002882; /* меняем цвет текста */
+                        outline: none; /* убираем выделение при фокусе */
+                        margin-bottom: 29px;
+                    }
+                
+                    #visit-time:focus {
+                        border-color: #0055aa; /* меняем цвет рамки при фокусе */
+                        background-color: #cce5ff; /* меняем фон при фокусе */
+                    }
+                </style>
                 <div class="form-group">
-                    <label for="visit-time">Время посещения:</label>
+                    <label for="visit-time" id="visit-time-label">Время посещения:</label>
                     <input type="time" id="visit-time" name="visit-time">
                 </div>
                 
@@ -93,5 +113,14 @@
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+        window.onload = function() {
+            var now = new Date();
+            var hours = ("0" + now.getHours()).slice(-2);
+            var minutes = ("0" + now.getMinutes()).slice(-2);
+            var currentTime = hours + ":" + minutes;
+            document.getElementById("visit-time").value = currentTime;
+        };
+    </script>
     </body>
     </html>
