@@ -77,16 +77,16 @@ function init() {
                     data: requestData,
                     success: function(response) {
 
-                        // Получите значение из ответа
+                        
                         var best_banks = response.data;
                         console.log(best_banks[3])
                         buildRouteToBank(best_banks[0]);
                         console.log(best_banks[3])
-                        // console.log('IIIIIIII')
+                      
                         $('#partial-data-container').html(best_banks[3]);
                         document.getElementById('bank-1').addEventListener('click', function() {
                             if (userCoordinates && best_banks.length >= 1) {
-                                // Выбираем первый лучший банк для построения маршрута
+                               
                                 var bankToRoute = best_banks[0];
                                 buildRouteToBank(bankToRoute);
                             }
@@ -94,7 +94,7 @@ function init() {
 
                         document.getElementById('bank-2').addEventListener('click', function() {
                             if (userCoordinates && best_banks.length >= 2) {
-                                // Выбираем второй лучший банк для построения маршрута
+                              
                                 var bankToRoute = best_banks[1];
                                 buildRouteToBank(bankToRoute);
                             }
@@ -102,7 +102,7 @@ function init() {
 
                         document.getElementById('bank-3').addEventListener('click', function() {
                             if (userCoordinates && best_banks.length >= 3) {
-                                // Выбираем третий лучший банк для построения маршрута
+                               
                                 var bankToRoute = best_banks[2];
                                 buildRouteToBank(bankToRoute);
                             }
@@ -110,46 +110,42 @@ function init() {
 
                         function buildRouteToBank(bankToRoute) {
                             myMap.geoObjects.removeAll();
-                            // Создаем маршрут к выбранному банку
+                            
                             var multiRoute = new ymaps.multiRouter.MultiRoute({
                                 referencePoints: [userCoordinates, [bankToRoute.latitude, bankToRoute.longitude]],
                                 params: {
-                                    routingMode: routeType, // Устанавливаем выбранный тип маршрута
+                                    routingMode: routeType, 
                                     avoidTrafficJams: true
                                 }
                             }, {
-                                // Внешний вид путевых точек.
+                           
                                 wayPointStartIconColor: "#333",
                                 wayPointStartIconFillColor: "#B3B3B3",
-                                // Задаем собственную картинку для последней путевой точки.
-                                // wayPointFinishIconLayout: "default#image",
+                                
                                 wayPointFinishIconImageHref: "/static/image/mark.png",
                                 wayPointFinishIconImageSize: [30, 42],
                                 wayPointFinishIconImageOffset: [-3, -42],
 
-                                // Внешний вид транзитных точек.
+                               
                                 viaPointIconRadius: 7,
                                 viaPointIconFillColor: "#000088",
                                 viaPointActiveIconFillColor: "#E63E92",
-                                // Транзитные точки можно перетаскивать, при этом
-                                // маршрут будет перестраиваться.
+                               
                                 viaPointDraggable: true,
 
-                                // Внешний вид точечных маркеров под путевыми точками.
                                 pinIconFillColor: "#000088",
                                 pinActiveIconFillColor: "#B3B3B3",
 
-                                // Внешний вид линии маршрута.
                                 routeStrokeWidth: 2,
                                 routeStrokeColor: "#000088",
                                 routeActiveStrokeWidth: 6,
                                 routeActiveStrokeColor: "#1E4BD2",
 
-                                // Внешний вид линии пешеходного маршрута.
+
                                 routeActivePedestrianSegmentStrokeStyle: "solid",
                                 routeActivePedestrianSegmentStrokeColor: "#1E4BD2",
 
-                                // Автоматически устанавливать границы карты так, чтобы маршрут был виден целиком.
+                                
                                 boundsAutoApply: true
                             });
 
@@ -158,7 +154,7 @@ function init() {
                             myMap.geoObjects.add(multiRoute);
 
                             multiRoute.model.events.add('requestsuccess', function() {
-                                // Вывод информации о маршруте
+                                
                                 var activeRoute = multiRoute.getActiveRoute();
                                 console.log("Длина: " + activeRoute.properties.get("distance").text);
                                 console.log("Время прохождения: " + activeRoute.properties.get("duration").text);
