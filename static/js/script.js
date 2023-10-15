@@ -166,6 +166,7 @@ function init() {
                                 var activeRoute = multiRoute.getActiveRoute();
                                 console.log("Длина: " + activeRoute.properties.get("distance").text);
                                 console.log("Время прохождения: " + activeRoute.properties.get("duration").text);
+                                var spid = activeRoute.properties.get("duration").text;
                             });
                         }
                     },
