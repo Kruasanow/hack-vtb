@@ -2,8 +2,3 @@ flask
 pandas
 geopy
 scikit-learn
-calendar
-datetime
-pickle
-random
-json
